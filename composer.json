@@ -18,7 +18,7 @@
         "php": "^8.0",
         "illuminate/collections": "^8.75",
         "illuminate/console": "^8.53",
-        "illuminate/support": "^8.53",
+        "illuminate/support": "^8.75",
         "react/event-loop": "^1.1",
         "symfony/console": "^5.3",
         "symfony/finder": "^6.0"
