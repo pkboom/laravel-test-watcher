@@ -1,7 +1,19 @@
 <?php
 
 return [
-    'input' => storage_path('app/input.php'),
-    'output' => storage_path('app/output.json'),
-    'host' => 'tcp://127.0.0.1:7789',
+    // Accepts globs, strings, regexes or an array of globs, strings or regexes
+    // '*.php', '/\.php$/', ['*.php', '*.twig']
+    'name' => '*.php',
+
+    // A directory path or an array of directories
+    'exclude' => [],
+
+    // A directory path or an array of directories
+    'in' => ['app', 'tests'],
+
+    // phpunit arguments
+    'arguments' => '--stop-on-failure --order-by=defects',
+
+    // timeout, default 10min
+    'timeout' => 600,
 ];

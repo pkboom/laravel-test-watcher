@@ -14,7 +14,7 @@ class TestWatcherServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                TestWatchCommand::class,
+                TestWatcherCommand::class,
             ]);
         }
     }
