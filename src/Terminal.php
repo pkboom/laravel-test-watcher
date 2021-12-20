@@ -3,6 +3,7 @@
 namespace Pkboom\TestWatcher;
 
 use Clue\React\Stdio\Stdio;
+use Illuminate\Support\Collection;
 use Pkboom\TestWatcher\Screens\Screen;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 
@@ -17,6 +18,13 @@ class Terminal
     public function __construct(Stdio $io)
     {
         $this->io = $io;
+    }
+
+    public function files(Collection $files)
+    {
+        $this->files = $files;
+
+        return $this;
     }
 
     public function on(string $eventName, callable $callable)
@@ -53,10 +61,6 @@ class Terminal
 
     public function write(string $message = '', $level = null)
     {
-        if ($level !== '') {
-            $message = "<{$level}>$message</{$level}>";
-        }
-
         $formattedMessage = (new OutputFormatter(true))->format($message);
 
         $formattedMessage = str_replace('<dim>', "\e[2m", $formattedMessage);
@@ -73,8 +77,7 @@ class Terminal
 
         $this->currentScreen = $screen;
 
-        $screen
-            ->useTerminal($this)
+        $screen->useTerminal($this)
             ->clearPrompt()
             ->removeAllListeners()
             ->registerListeners();
@@ -147,8 +150,25 @@ class Terminal
         return $this;
     }
 
+    public function setAutocomplete($callback)
+    {
+        $this->io->setAutocomplete($callback);
+
+        return $this;
+    }
+
     public function getStdio()
     {
         return $this->io;
+    }
+
+    public function setInput($data)
+    {
+        return $this->io->setInput($data);
+    }
+
+    public function moveCursorBy($data)
+    {
+        return $this->io->moveCursorBy($data);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 return [
-    // Accepts globs, strings, regexes or an array of globs, strings or regexes
+    // Name accepts globs, strings, regexes or an array of globs, strings or regexes
     // '*.php', '/\.php$/', ['*.php', '*.twig']
     'name' => '*.php',
 
@@ -12,7 +12,7 @@ return [
     'in' => ['app', 'tests'],
 
     // phpunit arguments
-    'arguments' => '--stop-on-failure --order-by=defects',
+    'arguments' => ['--stop-on-failure', '--order-by=defects'],
 
     // timeout, default 10min
     'timeout' => 600,
