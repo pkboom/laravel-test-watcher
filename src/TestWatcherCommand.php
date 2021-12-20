@@ -16,30 +16,20 @@ class TestWatcherCommand extends Command
 
     protected $terminal;
 
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->terminal = new Terminal(new Stdio());
-    }
-
     public function handle()
     {
-        $this->startWatching();
-    }
+        $this->terminal = new Terminal(new Stdio());
 
-    public function startWatching()
-    {
         $finder = (new Finder())
             ->name(Config::get('test-watcher.name'))
             ->files()
             ->exclude(Config::get('test-watcher.exclude'))
             ->in(Config::get('test-watcher.in'));
 
-        $watcher = FileWatcher::create($finder);
-
-        $this->terminal->files($watcher->files->keys())
+        $this->terminal->finder($finder)
             ->displayScreen(new Phpunit($this->option('filter')), false);
+
+        $watcher = FileWatcher::create($finder);
 
         Loop::addPeriodicTimer(1, function () use ($watcher) {
             $watcher->find()->whenChanged(function () {

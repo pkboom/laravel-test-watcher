@@ -39,9 +39,9 @@ abstract class Screen
         return $this;
     }
 
-    public function clearPrompt()
+    public function promptReady()
     {
-        $this->terminal->clearPrompt();
+        $this->terminal->promptReady();
 
         return $this;
     }

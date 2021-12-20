@@ -7,8 +7,6 @@ use Symfony\Component\Process\Process;
 
 class Phpunit extends Screen
 {
-    public const BINARY_PATH = 'vendor/bin/phpunit';
-
     public $options;
 
     protected $filter;
@@ -20,44 +18,23 @@ class Phpunit extends Screen
 
     public function draw()
     {
-        $this->writeHeader()
-            ->runTests()
+        $this->runTests()
             ->displayManual();
     }
 
     public function registerListeners()
     {
-        $this->terminal->onKeyPress(function ($line) {
-            $line = strtolower($line);
-
-            // 'f' pressed, new filter
-            switch ($line) {
-                case 'f':
-                    $this->terminal->displayScreen(new FilterClassName());
-
-                    break;
-                case '':
-                    $this->terminal->refreshScreen();
-
-                    break;
-                case 'q':
-                    exit();
-
-                    break;
-                default:
-                    $this->registerListeners();
-
-                    break;
-            }
+        $this->terminal->on('f', function () {
+            $this->terminal->displayScreen(new FilterName());
         });
 
-        return $this;
-    }
+        $this->terminal->on('r', function () {
+            $this->terminal->refreshScreen();
+        });
 
-    protected function writeHeader()
-    {
-        $this->terminal
-            ->emptyLine();
+        $this->terminal->on('q', function () {
+            exit(0);
+        });
 
         return $this;
     }

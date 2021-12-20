@@ -4,12 +4,12 @@ namespace Pkboom\TestWatcher\Screens;
 
 use Illuminate\Support\Str;
 
-class FilterClassName extends Screen
+class FilterName extends Screen
 {
     public function draw()
     {
         $this->terminal
-            ->comment('Type class name.')
+            ->comment('Type name.')
             ->prompt('> ');
 
         return $this;
@@ -34,11 +34,11 @@ class FilterClassName extends Screen
 
     protected function registerAutocompleter()
     {
-        $this->terminal->setAutocomplete(function ($word) {
-            return $this->terminal->files->filter(function ($file) {
-                return str_contains($file, 'Test.php');
-            })->map(function ($file) {
-                return (string) Str::of($file)->afterLast('/')
+        return $this->terminal->setAutocomplete(function ($word) {
+            return collect($this->terminal->finder)->filter(function ($file, $key) {
+                return str_contains($key, 'Test.php');
+            })->map(function ($file, $key) {
+                return (string) Str::of($key)->afterLast('/')
                     ->before('.php');
             })->filter(function ($class) use ($word) {
                 return str_contains($class, $word);

@@ -3,9 +3,9 @@
 namespace Pkboom\TestWatcher;
 
 use Clue\React\Stdio\Stdio;
-use Illuminate\Support\Collection;
 use Pkboom\TestWatcher\Screens\Screen;
 use Symfony\Component\Console\Formatter\OutputFormatter;
+use Symfony\Component\Finder\Finder;
 
 class Terminal
 {
@@ -15,14 +15,16 @@ class Terminal
 
     protected $currentScreen = null;
 
+    public $finder;
+
     public function __construct(Stdio $io)
     {
         $this->io = $io;
     }
 
-    public function files(Collection $files)
+    public function finder(Finder $finder)
     {
-        $this->files = $files;
+        $this->finder = $finder;
 
         return $this;
     }
@@ -30,15 +32,6 @@ class Terminal
     public function on(string $eventName, callable $callable)
     {
         $this->io->on($eventName, function ($line) use ($callable) {
-            $callable(trim($line));
-        });
-
-        return $this;
-    }
-
-    public function onKeyPress(callable $callable)
-    {
-        $this->io->once('data', function ($line) use ($callable) {
             $callable(trim($line));
         });
 
@@ -78,7 +71,7 @@ class Terminal
         $this->currentScreen = $screen;
 
         $screen->useTerminal($this)
-            ->clearPrompt()
+            ->promptReady()
             ->removeAllListeners()
             ->registerListeners();
 
@@ -102,11 +95,6 @@ class Terminal
         $this->displayScreen($this->currentScreen);
 
         return $this;
-    }
-
-    public function getPreviousScreen(): Screen
-    {
-        return $this->previousScreen;
     }
 
     public function refreshScreen()
@@ -143,7 +131,7 @@ class Terminal
         return $this;
     }
 
-    public function clearPrompt()
+    public function promptReady()
     {
         $this->io->setPrompt('');
 
@@ -155,20 +143,5 @@ class Terminal
         $this->io->setAutocomplete($callback);
 
         return $this;
-    }
-
-    public function getStdio()
-    {
-        return $this->io;
-    }
-
-    public function setInput($data)
-    {
-        return $this->io->setInput($data);
-    }
-
-    public function moveCursorBy($data)
-    {
-        return $this->io->moveCursorBy($data);
     }
 }
