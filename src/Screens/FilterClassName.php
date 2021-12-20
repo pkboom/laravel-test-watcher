@@ -4,7 +4,7 @@ namespace Pkboom\TestWatcher\Screens;
 
 use Illuminate\Support\Str;
 
-class Filter extends Screen
+class FilterClassName extends Screen
 {
     public function draw()
     {
@@ -39,7 +39,7 @@ class Filter extends Screen
                 return str_contains($file, 'Test.php');
             })->map(function ($file) {
                 return (string) Str::of($file)->afterLast('/')
-                    ->before('Test.php');
+                    ->before('.php');
             })->filter(function ($class) use ($word) {
                 return str_contains($class, $word);
             })->values()->toArray();

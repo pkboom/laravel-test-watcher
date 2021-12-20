@@ -33,7 +33,7 @@ class Phpunit extends Screen
             // 'f' pressed, new filter
             switch ($line) {
                 case 'f':
-                    $this->terminal->displayScreen(new Filter());
+                    $this->terminal->displayScreen(new FilterClassName());
 
                     break;
                 case '':
