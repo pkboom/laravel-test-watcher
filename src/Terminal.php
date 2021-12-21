@@ -11,8 +11,6 @@ class Terminal
 {
     protected $io;
 
-    protected $previousScreen = null;
-
     protected $currentScreen = null;
 
     public $finder;
@@ -66,8 +64,6 @@ class Terminal
 
     public function displayScreen(Screen $screen, $clearScreen = true)
     {
-        $this->previousScreen = $this->currentScreen;
-
         $this->currentScreen = $screen;
 
         $screen->useTerminal($this)
@@ -84,25 +80,8 @@ class Terminal
         return $this;
     }
 
-    public function goBack()
-    {
-        if (is_null($this->previousScreen)) {
-            return;
-        }
-
-        $this->currentScreen = $this->previousScreen;
-
-        $this->displayScreen($this->currentScreen);
-
-        return $this;
-    }
-
     public function refreshScreen()
     {
-        if (is_null($this->currentScreen)) {
-            return;
-        }
-
         $this->displayScreen($this->currentScreen);
 
         return $this;

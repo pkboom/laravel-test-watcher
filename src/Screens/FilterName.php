@@ -19,8 +19,6 @@ class FilterName extends Screen
     {
         $this->terminal->on('data', function ($line) {
             if ($line === '') {
-                $this->terminal->goBack();
-
                 return;
             }
 
