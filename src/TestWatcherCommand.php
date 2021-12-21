@@ -12,7 +12,7 @@ use Symfony\Component\Finder\Finder;
 
 class TestWatcherCommand extends Command
 {
-    protected $signature = 'test:watch {--filter=}';
+    protected $signature = 'test:watch {filter?}';
 
     protected $terminal;
 
@@ -27,7 +27,7 @@ class TestWatcherCommand extends Command
             ->in(Config::get('test-watcher.in'));
 
         $this->terminal->finder($finder)
-            ->displayScreen(new Phpunit($this->option('filter')), false);
+            ->displayScreen(new Phpunit($this->argument('filter')), false);
 
         $watcher = FileWatcher::create($finder);
 

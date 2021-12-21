@@ -28,10 +28,6 @@ class Phpunit extends Screen
             $this->terminal->displayScreen(new FilterName());
         });
 
-        $this->terminal->on('r', function () {
-            $this->terminal->refreshScreen();
-        });
-
         $this->terminal->on('q', function () {
             exit(0);
         });

@@ -9,7 +9,7 @@ class FilterName extends Screen
     public function draw()
     {
         $this->terminal
-            ->comment('Type name.')
+            ->comment('Type name:')
             ->prompt('> ');
 
         return $this;

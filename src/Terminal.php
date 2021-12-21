@@ -108,15 +108,6 @@ class Terminal
         return $this;
     }
 
-    public function isDisplayingScreen(string $screenClassName): bool
-    {
-        if (is_null($this->currentScreen)) {
-            return false;
-        }
-
-        return $screenClassName === get_class($this->currentScreen);
-    }
-
     public function removeAllListeners()
     {
         $this->io->removeAllListeners();
