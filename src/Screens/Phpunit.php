@@ -60,6 +60,6 @@ class Phpunit extends Screen
     {
         $this->terminal
             ->emptyLine()
-            ->write('(f)ilter, (q)uit, (r)un tests');
+            ->write('(f)ilter, (q)uit');
     }
 }
