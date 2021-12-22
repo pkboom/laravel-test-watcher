@@ -19,7 +19,7 @@ php artisan test:watch ExampleTest
 
 Then tests will be run.
 
-<img src="/images/demo1.png" width="800"  title="demo">
+<img src="/images/demo1.png" width="500"  title="demo">
 
 At the bottom you have three options:
 
@@ -30,7 +30,7 @@ Press f to filter tests.
 
 Type a name you want to filter by. Press `tab` to get help from autocomplete.
 
-<img src="/images/demo2.png" width="800"  title="demo">
+<img src="/images/demo2.png" width="500"  title="demo">
 
 To publish the config file to config/test-watcher.php run:
 
