@@ -7,6 +7,9 @@ use Pkboom\TestWatcher\Screens\Screen;
 use Symfony\Component\Console\Formatter\OutputFormatter;
 use Symfony\Component\Finder\Finder;
 
+/**
+ * @see https://github.com/spatie/phpunit-watcher/blob/master/src/Terminal.php
+ */
 class Terminal
 {
     protected $io;

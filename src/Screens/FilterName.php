@@ -4,6 +4,9 @@ namespace Pkboom\TestWatcher\Screens;
 
 use Illuminate\Support\Str;
 
+/**
+ * @see https://github.com/spatie/phpunit-watcher/blob/master/src/Screens/FilterFileName.php
+ */
 class FilterName extends Screen
 {
     public function draw()

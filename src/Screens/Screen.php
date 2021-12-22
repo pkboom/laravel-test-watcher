@@ -4,6 +4,9 @@ namespace Pkboom\TestWatcher\Screens;
 
 use Pkboom\TestWatcher\Terminal;
 
+/**
+ * @see https://github.com/spatie/phpunit-watcher/blob/master/src/Screens/Screen.php
+ */
 abstract class Screen
 {
     protected $terminal;
