@@ -17,13 +17,13 @@
     "require": {
         "php": "^8.0",
         "clue/stdio-react": "^2.5",
-        "illuminate/collections": "^8.75",
-        "illuminate/console": "^8.53",
-        "illuminate/support": "^8.75",
+        "illuminate/collections": "^8.75|^9.0",
+        "illuminate/console": "^8.53|^9.0",
+        "illuminate/support": "^8.75|^9.0",
         "pkboom/file-watcher": "^0.2.0",
         "react/event-loop": "^1.1",
-        "symfony/console": "^5.3",
-        "symfony/finder": "^5.4"
+        "symfony/console": "^5.3|^6.0",
+        "symfony/finder": "^5.4|^6.0"
     },
     "require-dev": {
         "orchestra/testbench": "^6.23",
