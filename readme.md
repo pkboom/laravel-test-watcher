@@ -8,6 +8,12 @@ Laravel Test Watcher will rerun tests whenever you save changes.
 composer require pkboom/laravel-test-watcher
 ```
 
+You can publish the config:
+
+```bash
+php artisan vendor:publish --provider="Pkboom\TestWatcher\TestWatcherServiceProvider" --tag="config"
+```
+
 ## Usage
 
 ```bash
